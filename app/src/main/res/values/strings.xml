@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Edit Recipient</string>
+    <string name="content">
+Recipient\'s bank
+</string>
+    <string name="list_row_te">
+Absa bank
+</string>
+    <string name="list_row_tr">2500655</string>
+    <string name="account_type">Account type</string>
+    <string name="account_ty">Savings account</string>
+    <string name="details">Recipient\'s details</string>
+    <string name="branch_c">Recipient\'s branch code</string>
+</resources>
