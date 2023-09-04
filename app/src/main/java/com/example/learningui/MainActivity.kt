@@ -4,69 +4,59 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import android.text.Selection
+import android.text.TextUtils
 import android.text.TextWatcher
-import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RelativeLayout
-import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
+import android.util.Patterns
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import com.example.learningui.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var firstList: RelativeLayout
-    private lateinit var textShow: TextView
-    private lateinit var secondList: RelativeLayout
-    private lateinit var textShow2: TextView
-    private lateinit var thirdList: RelativeLayout
-    private lateinit var textShow3: TextView
-//    private lateinit var editText1: EditText
-    private lateinit var editText2: EditText
-    private lateinit var editText3: EditText
-    private lateinit var editText4: EditText
-    private lateinit var editText5: EditText
-    private lateinit var editText6: EditText
-    private lateinit var continueButton: Button
+    private val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        firstList = findViewById(R.id.relativeLayout)
-        textShow = findViewById(R.id.list_row_te)
-        firstList.setOnClickListener {
+        setContentView(binding.root)
+        binding.relativeLayout.setOnClickListener {
             val intent = Intent(this, BranchList::class.java)
-            startActivity(intent)
+            mGetContent.launch(intent)
         }
-        textShow.text = (intent.extras?.getString("name") ?: "Abass")
-        secondList = findViewById(R.id.relativeLayout1)
-        textShow2 = findViewById(R.id.list_row_tr)
-        secondList.setOnClickListener {
+
+        binding.relativeLayout1.setOnClickListener {
             val intent = Intent(this, BranchList1::class.java)
-            startActivity(intent)
+            mGetContent.launch(intent)
         }
-        textShow2.text = (intent.extras?.getString("namme") ?: "2500655")
-        thirdList = findViewById(R.id.relativeLayout2)
-        textShow3 = findViewById(R.id.list_row_tt)
-        thirdList.setOnClickListener {
+        binding.listRowTr.text = (intent.extras?.getString("namme") ?: "2500655")
+        binding.relativeLayout2.setOnClickListener {
             val intent = Intent(this, BranchList2::class.java)
-            startActivity(intent)
+            mGetContent.launch(intent)
         }
-        textShow3.text = (intent.extras?.getString("nammme") ?: "Savings account")
+        binding.listRowTt.text = (intent.extras?.getString("nammme") ?: "Savings account")
 
-//        editText1 = findViewById(R.id.editTextText2)
-        editText2 = findViewById(R.id.editTextText3)
-        editText3 = findViewById(R.id.editTextText4)
-        editText4 = findViewById(R.id.editTextText5)
-        editText5 = findViewById(R.id.editTextText8)
-        editText6 = findViewById(R.id.editTextText9)
-        continueButton = findViewById(R.id.button)
-//        editText1.addTextChangedListener(loginTextWatcher)
-        editText2.addTextChangedListener(loginTextWatcher)
-        editText3.addTextChangedListener(loginTextWatcher)
-        editText4.addTextChangedListener(loginTextWatcher)
-        editText5.addTextChangedListener(loginTextWatcher)
-        editText6.addTextChangedListener(loginTextWatcher)
+        binding.recepientEtName.addTextChangedListener(loginTextWatcher)
+        binding.accountEtNumber.addTextChangedListener(loginTextWatcher)
+        binding.emailEtAddress.addTextChangedListener(loginTextWatcher)
+        binding.cellphoneetNumber.addTextChangedListener(loginTextWatcher)
+        binding.editTextText8.addTextChangedListener(loginTextWatcher)
+        binding.editTextText9.addTextChangedListener(loginTextWatcher)
 
-        continueButton.isEnabled = false
+        binding.button.isEnabled = false
+    }
+    private var mGetContent: ActivityResultLauncher<Intent> = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){
+        result:ActivityResult-> result.data
+        if(result.resultCode == RESULT_OK){
+            binding.listRowTe.text = (result.data?.getStringExtra("name") ?: "Select Bank")
+        }
+        if(result.resultCode == RESULT_CANCELED){
+            binding.listRowTr.text = (result.data?.getStringExtra("name")?: "Select Account NUmber")
+        }
+        if(result.resultCode == 1000){
+            binding.listRowTt.text = (result.data?.getStringExtra("name")?: "Select Account NUmber")
+        }
     }
 
     private val loginTextWatcher = object : TextWatcher{
@@ -75,18 +65,52 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//            val edit_text1 = editText1.text.toString().trim()
-            val edit_text2 = editText2.text.toString().trim()
-            val edit_text3 = editText3.text.toString().trim()
-            val edit_text4 = editText4.text.toString().trim()
-            val edit_text5 = editText5.text.toString().trim()
-            val edit_text6 = editText6.text.toString().trim()
+            val recipientName = binding.recepientEtName.text.toString().trim()
+            val accountNumber = binding.accountEtNumber.text.toString().trim()
+            val emailAddress = binding.emailEtAddress.text.toString().trim()
+            val cellphoneNumber = binding.cellphoneetNumber.text.toString().trim()
+            val statementDesc = binding.editTextText8.text.toString().trim()
+            val myStatementDesc = binding.editTextText9.text.toString().trim()
 
-            continueButton.isEnabled =  edit_text2.isNotEmpty() && edit_text3.isNotEmpty() && edit_text4.isNotEmpty()
-                    && edit_text5.isNotEmpty() && edit_text6.isNotEmpty()
+            if(recipientName.isEmpty()){
+                binding.etRecipientNameLayout.error = "Recipient Name cannot be empty!"
+            } else{
+                binding.etRecipientNameLayout.error = null
+            }
+            if(accountNumber.isEmpty()){
+                binding.etAccountNumberLayout.error = "Account Number cannot be empty"
+            }else{
+                binding.etAccountNumberLayout.error = null
+            }
+            if(emailAddress.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches()){
+                binding.etEmailAddress.error = "Invalid Email Address"
+            } else{
+                binding.etEmailAddress.error = null
+            }
+            if(cellphoneNumber.isEmpty()){
+                binding.etCellphoneNumber.error = "Invalid Cellphone Number"
+            }
+            else{
+                binding.etCellphoneNumber.error = null
+            }
+            if(statementDesc.isEmpty()){
+                binding.editTextText8.setBackgroundResource(R.drawable.with_error)
+            }
+            if(myStatementDesc.isEmpty()){
+                binding.editTextText9.setBackgroundResource(R.drawable.with_error)
+            }
+            if(statementDesc.isNotEmpty()){
+                binding.editTextText8.setBackgroundResource(R.drawable.with_foc)
+            }
+            if(myStatementDesc.isNotEmpty()){
+                binding.editTextText9.setBackgroundResource(R.drawable.with_foc)
+            }
+            binding.button.isEnabled =  recipientName.isNotEmpty() && accountNumber.isNotEmpty() && emailAddress.isNotEmpty() && cellphoneNumber.isNotEmpty()
+                    && statementDesc.isNotEmpty() && myStatementDesc.isNotEmpty()
         }
 
         override fun afterTextChanged(p0: Editable?) {
+
         }
 
     }

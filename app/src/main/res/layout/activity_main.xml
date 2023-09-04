@@ -288,7 +288,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
@@ -308,22 +308,22 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etRecipientNameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:boxBackgroundMode="outline"
-                app:boxStrokeColor="@color/mine"
-                app:boxStrokeErrorColor="#FF0000"
+                app:hintEnabled="false"
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
                 tools:ignore="MissingConstraints">
 
-                <EditText
-                    android:id="@+id/editTextText2"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/recepientEtName"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/edittext_border"
                     android:ems="10"
+                    android:hint="Enter Recipient Name"
                     android:inputType="textPersonName"
                     android:padding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -332,7 +332,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout5"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="17dp"
             android:layout_marginEnd="16dp"
@@ -354,29 +354,26 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etAccountNumberLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:boxBackgroundMode="outline"
-                app:boxStrokeColor="@color/mine"
-                app:boxStrokeErrorColor="#FF0000"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"
-                tools:ignore="MissingConstraints">
-            <EditText
-                android:id="@+id/editTextText3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/edittext_border"
-                android:ems="10"
-                android:inputType="number"
-                android:padding="10dp"
+                app:hintEnabled="false"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6"
-                app:layout_constraintVertical_bias="1.0" />
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/accountEtNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edittext_border"
+                    android:ems="10"
+                    android:hint="Enter Account Number"
+                    android:inputType="number"
+                    android:padding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -412,21 +409,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <View
-            android:id="@+id/view2"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
 
-
-        </View>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout7"
             android:layout_width="match_parent"
-            android:layout_height="85dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
@@ -446,31 +434,26 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:boxBackgroundMode="outline"
-                app:boxStrokeColor="@color/mine"
-                app:boxStrokeErrorColor="#FF0000"
+                app:hintEnabled="false"
                 app:layout_constraintTop_toBottomOf="@+id/textView9"
                 app:startIconDrawable="@drawable/left"
                 app:startIconTint="#D12020"
                 tools:ignore="MissingConstraints">
 
-                <EditText
-                    android:id="@+id/editTextText4"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailEtAddress"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/edittext_border"
-                    android:drawablePadding="10dp"
                     android:ems="10"
+                    android:hint="Enter Email Address"
                     android:inputType="textWebEmailAddress"
-                    android:padding="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                    android:padding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -478,12 +461,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout8"
             android:layout_width="match_parent"
-            android:layout_height="85dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="17dp"
-            app:layout_constraintBottom_toBottomOf="@+id/view2"
-            app:layout_constraintEnd_toEndOf="@id/view2"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@id/constraintLayout7"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
 
@@ -499,13 +481,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etCellphoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                app:boxBackgroundMode="outline"
-                app:boxStrokeColor="@color/mine"
-                app:boxStrokeErrorColor="#FF0000"
+                app:hintEnabled="false"
                 app:layout_constraintTop_toBottomOf="@+id/textView10"
                 app:prefixText="0"
                 app:prefixTextAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -513,18 +493,17 @@
                 app:startIconTint="#D12020"
                 tools:ignore="MissingConstraints">
 
-                <EditText
-                    android:id="@+id/editTextText5"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/cellphoneetNumber"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/edittext_border"
-                    android:gravity="center_vertical"
+                    android:ems="10"
+                    android:hint="Enter Cellphone number"
+                    android:maxLength="9"
                     android:inputType="phone"
-                    android:maxLength="10"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                    android:padding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -534,10 +513,11 @@
             android:layout_width="match_parent"
             android:layout_height="51dp"
             android:background="#24354599"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view2">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
 
             <TextView
                 android:id="@+id/textView8"
@@ -559,13 +539,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/view3"
-            android:layout_width="match_parent"
-            android:layout_height="182dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout9"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout10"
@@ -653,8 +626,9 @@
             android:id="@+id/view4"
             android:layout_width="wrap_content"
             android:layout_height="1dp"
+            android:layout_marginTop="16dp"
             android:background="@android:color/darker_gray"
-            app:layout_constraintTop_toBottomOf="@+id/view3"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout11"
             tools:ignore="MissingConstraints" />
 
         <Button
@@ -671,9 +645,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view3" />
+            app:layout_constraintTop_toBottomOf="@+id/view4" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--        </ScrollView>-->
 </ScrollView>

@@ -10,9 +10,7 @@ import android.widget.Toast
 class BranchList2 : AppCompatActivity() {
 
     private lateinit var list: ListView
-
     var branch = arrayOf("South Africa", "Lorem", "Ipsum", "Hello", "World", "consolidate", "pan", "instruction", "orange", "outlook")
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_branch_list2)
@@ -23,9 +21,10 @@ class BranchList2 : AppCompatActivity() {
 
         list.setOnItemClickListener { _, _, i, _ ->
             var str = list.adapter.getItem(i).toString()
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            intent.putExtra("nammme", str)
-            startActivity(intent)
+            val intent = Intent()
+            intent.putExtra("name", str)
+            setResult(1000, intent)
+            finish()
             Toast.makeText(this, "Item Sekected ${branch[i]}", Toast.LENGTH_SHORT).show()
         }
     }

@@ -23,9 +23,10 @@ class BranchList1 : AppCompatActivity() {
 
         list.setOnItemClickListener { _, _, i, _ ->
             var str = list.adapter.getItem(i).toString()
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            intent.putExtra("namme", str)
-            startActivity(intent)
+            val intent = Intent()
+            intent.putExtra("name", str)
+            setResult(RESULT_CANCELED, intent)
+            finish()
             Toast.makeText(this, "Item Sekected ${branch[i]}", Toast.LENGTH_SHORT).show()
         }
     }
